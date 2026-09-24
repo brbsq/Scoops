@@ -1,0 +1,51 @@
+body.playing-fitted { overflow: hidden; }
+.game-page.fitted-play { position: fixed; left: 50%; top: 50%; width: var(--play-width); height: var(--play-height); min-height: 0; max-width: none; margin: 0; padding: 12px 20px; box-sizing: border-box; transform: translate(-50%, -50%) scale(var(--play-scale)); display: grid; grid-template-columns: 1fr; grid-template-rows: 60px 340px 1fr; gap: 12px; transform-origin: center; }
+.fitted-play .shop-header { grid-column: 1 / -1; min-height: 0; height: 60px; display: flex; gap: 22px; padding-right: 62px; }
+.fitted-play .shop-brand { margin-right: auto; flex: 0 0 auto; }
+.fitted-play .shop-brand img { width: 155px; }
+.fitted-play .session-strip { display: flex; align-items: center; gap: 16px; margin: 0; }
+.fitted-play .wave-title, .fitted-play .round-clock { font-size: 14px; margin: 0; white-space: nowrap; }
+.fitted-play .shop-header .shop-button { min-height: 42px; font-size: 14px; padding: 10px 16px; white-space: nowrap; }
+.fitted-play .customer-wave { min-height: 0; margin: 0; position: relative; }
+.fitted-play .customer-grid { height: 100%; min-height: 0; display: grid; grid-template-columns: repeat(var(--wave-size), minmax(0,1fr)); grid-template-rows: 1fr; gap: 12px; }
+.fitted-play .customer-tile { min-height: 0; padding: 4px 5px 0; display: flex; flex-direction: column; }
+.fitted-play .customer-order { background: var(--dialog-colour); color: #453d49; font-size: 23px; font-weight: 800; line-height: 1.25; min-height: 90px; padding: 12px 8px; display: flex; align-items: center; justify-content: center; }
+.fitted-play .customer-portrait, .fitted-play .customer-portrait:has(.patience-ring[hidden]) { width: 140px; max-width: 140px; padding-top: 48px; margin: auto auto 0; }
+.fitted-play .ring-position { top: calc(48px + var(--head-y)); width: 36px; height: 36px; transform: translate(-50%,-65px); }
+.fitted-play .patience-ring { width: 36px; height: 36px; }
+.fitted-play .tile-counter { min-height: 40px; padding: 5px; gap: 4px; }
+.fitted-play .tile-counter .customer-name { display: block; font-size: 7px; }
+.fitted-play .tile-status { font-size: 12px; }
+.fitted-play .wave-message { position: absolute; inset: 30% 0 auto; text-align: center; }
+.fitted-play .bowl-station { display: grid; grid-template-columns: 1fr 370px 1fr; align-items: center; gap: 24px; padding: 0 15px; margin: 0; background: transparent; min-height: 0; }
+.fitted-play .bowl-info { display: flex; flex-direction: column; padding: 15px; }
+.fitted-play .selected-order { font-size: 23px; line-height: 1.3; font-weight: 800; margin: 0 0 10px; }
+.fitted-play .bowl-owner { font-size: 16px; margin: 0; }
+.fitted-play .bowl-reaction { font-size: 14px; }
+.fitted-play .bowl-workspace { position: relative; width: 100%; max-width: none; }
+.fitted-play .glass-bowl-display { height: auto; width: 100%; max-width: none; }
+.fitted-play .bowl-controls { display: flex; flex-direction: column; gap: 0; width: 100%; }
+.fitted-play .scoop-actions .shop-button { width: 68px; height: 68px; min-height: 68px; flex-basis: 68px; font-size: 36px; }
+.fitted-play .serve-button { margin-top: 14px; min-height: 52px; font-size: 17px; }
+.fitted-play .served-popup { top: 0; bottom: auto; font-size: 14px; padding: 8px 12px; }
+.serving-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; }
+.serving-overlay[hidden] { display: none; }
+.game-page.fitted-play.compact-play { grid-template-columns: 1fr 380px; grid-template-rows: 55px 1fr; gap: 12px 20px; }
+.compact-play .customer-grid { grid-template-columns: repeat(3,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); gap: 8px; }
+.compact-play .customer-order { font-size: 21px; min-height: 74px; padding: 7px; }
+.compact-play .customer-portrait, .compact-play .customer-portrait:has(.patience-ring[hidden]) { width: 78px; max-width: 78px; padding-top: 27px; }
+.compact-play .ring-position { top: calc(27px + var(--head-y)); transform: translate(-50%,-39px); width: 25px; height: 25px; }
+.compact-play .patience-ring { width: 25px; height: 25px; }
+.compact-play .tile-counter { min-height: 30px; padding: 3px; gap: 2px; }
+.compact-play .tile-status { font-size: 11px; }
+.compact-play .bowl-station { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 0; }
+.compact-play .bowl-info { padding: 10px 14px; width: 100%; text-align: center; }
+.compact-play .selected-order { font-size: 22px; margin-bottom: 5px; }
+.compact-play .bowl-workspace { width: 320px; }
+.compact-play .bowl-controls { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px; }
+.compact-play .scoop-actions { gap: 10px; }
+.compact-play .scoop-actions .shop-button { width: 58px; height: 58px; min-height: 58px; flex-basis: 58px; font-size: 32px; }
+.compact-play .serve-button { margin: 0; font-size: 16px; }
+/* Let long written orders grow naturally instead of shrinking their speech bubbles. */
+.game-page.fitted-play:not(.compact-play) { grid-template-rows: 60px 380px 1fr; }
+.fitted-play .customer-order { display: block; flex: 0 0 auto; }
