@@ -1,0 +1,40 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+
+// A minimal browser surface verifies the transition's timing and navigation locks.
+test('dissolve navigation locks input, cancels safely and respects reduced motion', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const original = Object.fromEntries(['document', 'window', 'location', 'matchMedia', 'innerWidth', 'innerHeight'].map(key => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
+  t.after(() => { for (const [key, descriptor] of Object.entries(original)) { if (descriptor) Object.defineProperty(globalThis, key, descriptor); else delete globalThis[key]; } });
+  const styles = new Map(); const classes = new Set(); const listeners = new Map();
+  const landing = { style: { setProperty: (key, value) => styles.set(key, value) }, inert: false, classList: { add: value => classes.add(value), remove: value => classes.delete(value) } };
+  const overlay = { className: '', setAttribute() {}, style: { setProperty: (key, value) => styles.set(key, value) } };
+  let focused = 0;
+  const motion = { matches: false };
+  globalThis.document = { createElement: () => overlay, body: { append() {} }, querySelector: selector => selector === '.landing' ? landing : { focus() { focused++; } } };
+  globalThis.window = { addEventListener: (name, callback) => listeners.set(name, callback) };
+  let hash = '#modes';
+  globalThis.location = { get hash() { return hash; }, set hash(value) { hash = value.startsWith('#') ? value : `#${value}`; }, replace(value) { this.hash = value; } };
+  globalThis.matchMedia = () => motion;
+  globalThis.innerWidth = 800; globalThis.innerHeight = 600;
+  const { dissolveNavigate, cancelNavigation, isNavigating } = await import('../src/navigation.js');
+  const first = dissolveNavigate('quantity/pro');
+  assert.equal(landing.inert, true); assert.equal(isNavigating(), true);
+  assert.equal(classes.has('is-dissolving'), true); assert.equal(styles.get('--dissolve-duration'), '450ms');
+  assert.equal(await dissolveNavigate('quantity/easy'), false);
+  t.mock.timers.tick(450); await Promise.resolve(); assert.equal(location.hash, '#quantity/pro');
+  t.mock.timers.tick(30); await Promise.resolve(); assert.equal(classes.has('is-dissolving'), false);
+  t.mock.timers.tick(450); assert.equal(await first, true);
+  assert.equal(landing.inert, false); assert.equal(focused, 1);
+  const cancelled = dissolveNavigate('loading/pro'); cancelNavigation();
+  t.mock.timers.tick(1000); assert.equal(await cancelled, false); assert.equal(landing.inert, false);
+  const back = dissolveNavigate('loading/pro'); location.hash = '#modes'; listeners.get('hashchange')();
+  t.mock.timers.tick(1000); assert.equal(await back, false); assert.equal(location.hash, '#modes');
+  motion.matches = true;
+  const fade = dissolveNavigate('quantity/baby', { replace: true });
+  assert.equal(classes.has('is-dissolving'), true); assert.equal(styles.get('--dissolve-duration'), '100ms');
+  t.mock.timers.tick(100); await Promise.resolve(); assert.equal(location.hash, '#quantity/baby');
+  t.mock.timers.tick(30); await Promise.resolve();
+  assert.equal(classes.has('is-dissolving'), false);
+  t.mock.timers.tick(100); assert.equal(await fade, true); assert.equal(isNavigating(), false);
+});
