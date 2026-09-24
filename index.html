@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#547629">
+<meta name="description" content="A little scoop of something good. Welcome to Scoops!!!">
+<title>Scoops!!!</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='20' fill='%23ecc1c8'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Georgia' font-size='48' font-weight='bold' fill='%23547629'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" href="/assets/scoops.png">
+<link rel="stylesheet" href="/src/scoops.css">
+<link rel="stylesheet" href="/src/game.css">
+<link rel="stylesheet" href="/src/waves-game.css">
+<link rel="stylesheet" href="/src/shop-scene.css">
+<link rel="stylesheet" href="/src/play-layout.css">
+<link rel="stylesheet" href="/src/pvp.css">
+<script type="module" src="/src/main.js"></script>
+</head>
+<body>
+<main class="landing" aria-label="Scoops main menu">
+  <div class="background" aria-hidden="true">
+    <svg class="waves" viewBox="0 0 1920 1080" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="forest" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#638729"/><stop offset="1" stop-color="#263f1a"/></linearGradient>
+        <linearGradient id="shade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#476820"/><stop offset="1" stop-color="#314d1b"/></linearGradient>
+        <linearGradient id="mint" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#eff4c7"/><stop offset="1" stop-color="#67dc7b"/></linearGradient>
+        <linearGradient id="lime" x1="0" y1="0" x2="0.2" y2="1"><stop stop-color="#f1f2c0"/><stop offset="1" stop-color="#44d63e"/></linearGradient>
+      </defs>
+      <path fill="url(#forest)" d="M0 0H1920V1080H0Z"/>
+      <path fill="url(#shade)" opacity=".58" d="M440 -20C720 86 676 245 1222 263S1634 347 1960 503V-20Z">
+        <animate calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .55 1;.45 0 .55 1" attributeName="d" dur="8s" repeatCount="indefinite" values="M440 -20C720 86 676 245 1222 263S1634 347 1960 503V-20Z;M340 -20C670 175 870 160 1242 285S1680 420 1960 450V-20Z;M440 -20C720 86 676 245 1222 263S1634 347 1960 503V-20Z"/>
+      </path>
+      <path fill="url(#shade)" d="M1010 -20C1250 134 1515 218 1960 271V-20Z">
+        <animate calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .55 1;.45 0 .55 1" attributeName="d" dur="10s" repeatCount="indefinite" values="M1010 -20C1250 134 1515 218 1960 271V-20Z;M940 -20C1240 230 1640 140 1960 320V-20Z;M1010 -20C1250 134 1515 218 1960 271V-20Z"/>
+      </path>
+      <path fill="url(#mint)" d="M-40 43C378 112 349 102 567 236S811 350 1008 425S1558 614 1960 708V1120H-40Z">
+        <animate calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .55 1;.45 0 .55 1" attributeName="d" dur="6s" repeatCount="indefinite" values="M-40 43C378 112 349 102 567 236S811 350 1008 425S1558 614 1960 708V1120H-40Z;M-40 87C297 37 417 227 647 243S851 443 1088 449S1618 664 1960 647V1120H-40Z;M-40 43C378 112 349 102 567 236S811 350 1008 425S1558 614 1960 708V1120H-40Z"/>
+      </path>
+      <path fill="url(#lime)" d="M-40 209C269 395 696 543 974 568S1330 729 1510 800S1791 877 1960 928V1120H-40Z">
+        <animate calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .55 1;.45 0 .55 1" attributeName="d" dur="7s" repeatCount="indefinite" values="M-40 209C269 395 696 543 974 568S1330 729 1510 800S1791 877 1960 928V1120H-40Z;M-40 260C289 455 646 447 954 603S1340 659 1540 785S1781 947 1960 901V1120H-40Z;M-40 209C269 395 696 543 974 568S1330 729 1510 800S1791 877 1960 928V1120H-40Z"/>
+      </path>
+    </svg>
+  </div>
+  <div class="title-entry">
+    <h1 class="sr-only">Scoops!!!</h1>
+    <button class="logo interactive" aria-label="Scoops! Play a little bounce" type="button"><img src="/assets/scoops.png" alt="" width="1529" height="365" draggable="false"></button>
+  </div>
+  <div class="start-entry">
+    <button class="start interactive" type="button" aria-label="Start game">
+      <span class="start-surface" aria-hidden="true"></span>
+      <img class="start-label" src="/assets/start-label.png" alt="" width="276" height="43" draggable="false">
+    </button>
+  </div>
+  <section class="mode-page" aria-labelledby="mode-title" hidden>
+    <h2 id="mode-title" tabindex="-1">Select your mode.</h2>
+    <button class="back-home" type="button" aria-label="Back to main menu">‹ <span>Back</span></button>
+    <div class="mode-options" role="group" aria-label="Game mode">
+      <div class="mode-entry" style="--entry-order:0"><button class="mode-button interactive" data-mode="baby" type="button" aria-pressed="false"><span>BABY</span></button></div>
+      <div class="mode-entry" style="--entry-order:1"><button class="mode-button interactive" data-mode="easy" type="button" aria-pressed="false"><span>EASY</span></button></div>
+      <div class="mode-entry" style="--entry-order:2"><button class="mode-button interactive" data-mode="pro" type="button" aria-pressed="false"><span>PRO</span></button></div>
+      <div class="mode-entry" style="--entry-order:3"><button class="mode-button interactive" data-mode="pvp" type="button" aria-pressed="false"><span>PvP</span></button></div>
+    </div>
+    <aside class="timer-entry" aria-label="Customer patience settings">
+      <div class="timer-panel glass" id="timer-panel" popover>
+        <h3>Customer patience</h3>
+        <div class="timer-options" role="group" aria-label="Customer timer">
+          <button type="button" data-patience-enabled="false" aria-pressed="true">Off</button>
+          <button type="button" data-patience-enabled="true" aria-pressed="false">On</button>
+        </div>
+        <div class="timer-options patience-durations" role="group" aria-label="Customer wait duration" hidden>
+          <button type="button" data-duration="15" aria-pressed="false">Fifteen seconds</button>
+          <button type="button" data-duration="20" aria-pressed="false">Twenty seconds</button>
+          <button type="button" data-duration="30" aria-pressed="true">Thirty seconds</button>
+          <button type="button" data-duration="45" aria-pressed="false">Forty-five seconds</button>
+          <button type="button" data-duration="60" aria-pressed="false">One minute</button>
+        </div>
+        <p class="timer-help" id="timer-help" role="status">Off means customers wait without a time limit.</p>
+        <h3 class="practice-heading">PvP customer timer</h3>
+        <p>Choose how long each PvP customer waits.</p>
+        <div class="timer-options" role="group" aria-label="PvP customer timer">
+          <button type="button" data-pvp-duration="0" aria-pressed="true">Off</button>
+          <button type="button" data-pvp-duration="10" aria-pressed="false">Ten seconds</button>
+          <button type="button" data-pvp-duration="20" aria-pressed="false">Twenty seconds</button>
+          <button type="button" data-pvp-duration="30" aria-pressed="false">Thirty seconds</button>
+          <button type="button" data-pvp-duration="60" aria-pressed="false">One minute</button>
+        </div>
+        <h3 class="practice-heading">Round time limit</h3>
+        <div class="timer-options" role="group" aria-label="Round time limit">
+          <button type="button" data-round-minutes="0" aria-pressed="true">Off</button>
+          <button type="button" data-round-minutes="1" aria-pressed="false">One minute</button>
+          <button type="button" data-round-minutes="2" aria-pressed="false">Two minutes</button>
+          <button type="button" data-round-minutes="3" aria-pressed="false">Three minutes</button>
+          <button type="button" data-round-minutes="4" aria-pressed="false">Four minutes</button>
+          <button type="button" data-round-minutes="5" aria-pressed="false">Five minutes</button>
+        </div>
+        <h3 class="practice-heading">Practice length</h3>
+        <div class="timer-options" role="group" aria-label="Practice length"><button type="button" data-practice="standard" aria-pressed="true">Full range</button><button type="button" data-practice="endless" aria-pressed="false">Endless practice</button></div>
+      </div>
+      <button class="timer-button" type="button" popovertarget="timer-panel" aria-label="Set customer wait time, currently off" aria-expanded="false" aria-controls="timer-panel">
+        <img src="/assets/timer.png" alt="" width="70" height="70" draggable="false">
+        <span class="timer-badge" hidden></span>
+      </button>
+    </aside>
+    <p class="sr-only" id="selection-status" role="status"></p>
+  </section>
+  <aside class="sound-entry" aria-label="Music controls">
+    <div class="volume-panel glass" id="volume-panel" popover>
+      <div class="volume-heading"><label class="sr-only" for="volume">Music volume</label><output id="volume-value" for="volume">60%</output></div>
+      <div class="volume-track">
+        <button class="mute" type="button" aria-label="Mute music" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="sound-lines" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path class="mute-line" d="m15 9 6 6m0-6-6 6"/></svg></button>
+        <input id="volume" type="range" min="0" max="100" value="60" step="1" aria-label="Music volume" aria-valuetext="60 percent">
+      </div>
+    </div>
+    <button class="sound-button" type="button" popovertarget="volume-panel" aria-label="Adjust music volume" aria-expanded="false" aria-controls="volume-panel">
+      <img class="volume-disc" src="/assets/volume-disc.png" alt="" width="125" height="125" draggable="false">
+      <span class="volume-symbol" aria-hidden="true"></span><span class="muted-slash" aria-hidden="true"></span>
+    </button>
+  </aside>
+  <dialog class="coming-soon glass" aria-labelledby="coming-title" aria-describedby="coming-description">
+    <span class="scoop-mark" aria-hidden="true">✳</span>
+    <p class="eyebrow">A LITTLE SOMETHING SWEET</p>
+    <h2 id="coming-title">Still scooping.</h2>
+    <p id="coming-description">The game is on its way.<br>Stay for the good vibes.</p>
+    <form method="dialog"><button class="back-button" autofocus>Back to the groove</button></form>
+  </dialog>
+  <audio id="bgm" src="/assets/stylish-world.mp3" loop preload="auto"></audio>
+</main>
+</body>
+</html>

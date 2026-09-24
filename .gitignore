@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+pages/
+.publish/
+little-trolley/
+design-reference/
+# Legacy shopping prototype files are outside Scoops.
+server.js
+src/world.js
+src/style.css
