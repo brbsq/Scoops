@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: scoops-multiplayer
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci && npm run build
+    startCommand: node scripts/serve.mjs --production
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: NODE_ENV
+        value: production

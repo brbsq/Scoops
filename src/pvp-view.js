@@ -56,7 +56,7 @@ export function initPvp({settings}) {
       render();
     });
     socket.on('disconnect',()=>{notice='Connection lost. Reconnecting… The room waits for up to one minute.';render();});
-    socket.on('connect_error',()=>{notice='Cannot reach the host. Check that both devices use the same network.';render();});
+    socket.on('connect_error',()=>{notice='Cannot reach the multiplayer server. Check your internet connection and use the same game address on every device.';render();});
     socket.on('pvp:state',next=>{if(connection!==socket||!active)return;state=next;screen=next.match?'match':'lobby';error='';render();});
     socket.on('pvp:closed',reason=>{if(connection!==socket||!active)return;credentials=null;save();state=null;screen='setup';layoutKey='';notice=reason;render();});
     socket.connect();

@@ -7,13 +7,16 @@ import { attachPvp } from './pvp-server.mjs';
 
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.mp3': 'audio/mpeg', '.glb': 'model/gltf-binary', '.ttf': 'font/ttf', '.txt': 'text/plain; charset=utf-8' };
 
-export function createAppServer({ root, production = false, port = 5173 }) {
+export function createAppServer({ root, production = false, port = 5173, publicUrl = '' }) {
   root = path.resolve(root);
   const server = http.createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    if (pathname === '/healthz') {
+      response.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }).end(JSON.stringify({ status: 'ok' })); return;
+    }
     if (pathname === '/api/network') {
-      const urls = Object.values(networkInterfaces()).flat().filter(n => n.family === 'IPv4' && !n.internal).map(n => `http://${n.address}:${server.address()?.port || port}/#pvp`);
+      const urls = publicUrl ? [`${new URL(publicUrl).origin}/#pvp`] : Object.values(networkInterfaces()).flat().filter(n => n.family === 'IPv4' && !n.internal).map(n => `http://${n.address}:${server.address()?.port || port}/#pvp`);
       response.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }).end(JSON.stringify({ urls })); return;
     }
     const isPublicAsset = pathname.startsWith('/assets/') || pathname.startsWith('/fonts/');

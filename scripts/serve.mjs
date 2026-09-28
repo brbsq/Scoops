@@ -6,6 +6,6 @@ const bundled = process.argv.includes('--bundle');
 const production = bundled || process.argv.includes('--production');
 const root = production && !bundled ? path.join(project, 'dist') : project;
 const port = Number(process.env.PORT || 5173);
-const { server, pvp } = createAppServer({ root, production, port });
+const { server, pvp } = createAppServer({ root, production, port, publicUrl: process.env.RENDER_EXTERNAL_URL || '' });
 server.listen(port, process.env.HOST || '0.0.0.0', () => console.log(`Scoops!!! ready at http://localhost:${port} (solo and multiplayer)`));
 for (const signal of ['SIGTERM', 'SIGINT']) process.on(signal, async () => { await pvp.close(); process.exit(0); });

@@ -13,7 +13,7 @@ test('shared scenery switches across solo, PvP and menus, including a late model
 });
 
 test('standalone production package serves every mode, model, audio, ranges and multiplayer from one server', async t => {
-  const {server,pvp}=createAppServer({root:new URL('../dist',import.meta.url).pathname,production:true,port:0});
+  const {server,pvp}=createAppServer({root:new URL('../dist',import.meta.url).pathname,production:true,port:0,publicUrl:'https://scoops-example.onrender.com'});
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));const base=`http://127.0.0.1:${server.address().port}`;const clients=[];
   t.after(async()=>{clients.forEach(c=>c.disconnect());await pvp.close();});
   const page=await fetch(base).then(r=>r.text());assert.match(page,/data-mode="baby"/);assert.match(page,/data-mode="pro"/);assert.match(page,/data-mode="pvp"/);
@@ -23,6 +23,8 @@ test('standalone production package serves every mode, model, audio, ranges and 
   }
   assert.equal((await fetch(base+'/package.json')).status,404);
   assert.equal((await fetch(base+'/api/network')).status,200);
+  assert.deepEqual(await fetch(base+'/api/network').then(r=>r.json()),{urls:['https://scoops-example.onrender.com/#pvp']});
+  assert.deepEqual(await fetch(base+'/healthz').then(r=>r.json()),{status:'ok'});
   assert.equal((await fetch(base+'/socket.io/socket.io.js')).status,200);
   const connect=async()=>{const c=io(base,{transports:['websocket'],forceNew:true});clients.push(c);await new Promise((resolve,reject)=>{c.once('connect',resolve);c.once('connect_error',reject);});return c;};
   const request=(c,data)=>new Promise(resolve=>c.emit('pvp:request',data,resolve));

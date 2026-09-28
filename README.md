@@ -82,6 +82,14 @@ The separate Little Trolley application and legacy trolley files are not part of
 
 ## Multiplayer
 
+### Render hosting
+
+Deploy this repository as a Render **Web Service** (Node), using `main` and the repository root. The included `render.yaml` configures the Free plan in Singapore, Node twenty-two, build command `npm ci && npm run build`, start command `node scripts/serve.mjs --production`, and health check `/healthz`. The service uses Render's supplied `PORT` and listens on `0.0.0.0`. No database or secret key is required.
+
+The Render address serves the complete game, including online PvP. Every device opens that same HTTPS address, selects PvP, and creates or joins a room using its code. Devices can be on different networks. Render supplies `RENDER_EXTERNAL_URL`, which is used for the public invitation address.
+
+Keep this service on a single instance: rooms currently live in process memory. Rooms reset on deploy, restart, or sleep. The Free plan sleeps after fifteen idle minutes and may take about a minute to wake; open the game before class. An always-on paid instance is optional and is not selected by this configuration. Documentation: https://render.com/docs/free and https://render.com/docs/websocket.
+
 Choose **PvP** from the mode menu. No account is needed; players use a nickname.
 
 - **Same screen:** two independent counters with touch/mouse controls. Keyboard: A adds, S removes, D serves for the left player; J/K/L do the same for the right. Both play in landscape. Hiding the page, rotating to portrait or opening an exit/finish confirmation pauses both players.
