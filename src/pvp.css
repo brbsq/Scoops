@@ -71,3 +71,4 @@ body.pvp-active .sound-entry {top:12px;right:18px;width:42px;}
 .pvp-choices.static-layout {grid-template-columns:minmax(0,560px);justify-content:center;}
 
 .pvp-static-note {text-align:center;font-weight:700;margin:18px auto;max-width:560px;}
+.pvp-online-link {display:inline-block;text-decoration:none;background:#f3c2d0;}

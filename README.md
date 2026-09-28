@@ -84,6 +84,8 @@ The separate Little Trolley application and legacy trolley files are not part of
 
 ### Render hosting
 
+Online multiplayer: **https://scoops-multiplayer.onrender.com/#pvp**. The GitHub Pages PvP menu includes a “Play online with friends” link to this service. All players use the Render address for online rooms. The service is deployed from the public repository; to apply later updates, use Render's **Manual Deploy → Deploy latest commit** when automatic deployment is unavailable.
+
 Deploy this repository as a Render **Web Service** (Node), using `main` and the repository root. The included `render.yaml` configures the Free plan in Singapore, Node twenty-two, build command `npm ci && npm run build`, start command `node scripts/serve.mjs --production`, and health check `/healthz`. The service uses Render's supplied `PORT` and listens on `0.0.0.0`. No database or secret key is required.
 
 The Render address serves the complete game, including online PvP. Every device opens that same HTTPS address, selects PvP, and creates or joins a room using its code. Devices can be on different networks. Render supplies `RENDER_EXTERNAL_URL`, which is used for the public invitation address.
