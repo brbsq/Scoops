@@ -20,6 +20,6 @@ Install Node.js (version 22 or later). In this folder, run:
 
 Open http://localhost:5173 on the host computer. For other devices on the same Wi-Fi, use the address and room code shown in the PvP lobby. Leave the server running. No separate game service is needed.
 
-Copy this entire folder to move or deploy the game. Network PvP needs the included Node server; opening index.html directly or using static-only hosting will not provide rooms. Room state is temporary and resets when the server restarts. This package is not publicly deployed.
+Copy this entire folder to move or deploy the game. Network PvP needs the included Node server; opening index.html directly or using static-only hosting will not provide rooms. Room state is temporary and resets when the server restarts. For Internet play, use the live Render service at https://scoops-multiplayer.onrender.com/#pvp.
 `);
 console.log('Built Scoops!!! into dist/ — ready. Use npm start for multiplayer hosting.');
